@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogue Haven | Modern Fashion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Previous styles remain the same */
+
+        .split.left::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://assets.onecompiler.app/437hn5hg9/437jypxbc/women-shopping.jpg') no-repeat center center/cover;
+        }
+
+        .split.right::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://assets.onecompiler.app/437hn5hg9/437jypxbc/shop%20men.webp') no-repeat center center/cover;
+        }
+
+        /* Add gradient overlay for better text visibility */
+        .split::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.3), transparent);
+        }
+
+        /* Rest of the previous styles remain unchanged */
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">VOGUE HAVEN</a>
+        <nav class="nav-links">
+            <a href="#">Shop</a>
+            <a href="#">New Arrivals</a>
+            <a href="#">About</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="split left">
+            <h2>Her Style</h2>
+            <button class="btn" onclick="window.location.href='#'">Shop Women</button>
+        </div>
+        <div class="split right">
+            <h2>His Style</h2>
+            <button class="btn" onclick="window.location.href='index.html'">Shop Men</button>
+        </div>
+    </div>
+
+    <script>
+        // Add hover effect with parallax movement
+        document.querySelectorAll('.split').forEach(split => {
+            split.addEventListener('mousemove', (e) => {
+                const x = e.clientX - split.getBoundingClientRect().left;
+                const y = e.clientY - split.getBoundingClientRect().top;
+                
+                split.style.transform = `
+                    scale(1.02)
+                    rotateX(${(y - split.offsetHeight/2) / 15}deg)
+                    rotateY(${-(x - split.offsetWidth/2) / 15}deg)
+                `;
+            });
+
+            split.addEventListener('mouseleave', () => {
+                split.style.transform = 'scale(1) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
